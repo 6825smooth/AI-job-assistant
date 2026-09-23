@@ -1,0 +1,110 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * { @apply border-slate-200; }
+  body { @apply text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100 dark:border-slate-800; }
+  button, input, textarea, select { @apply outline-none; }
+  button, a { @apply focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2; }
+  button:not(:disabled), a { @apply active:scale-[0.99]; }
+}
+
+@layer components {
+  .panel { @apply rounded-2xl border bg-white shadow-sm transition-shadow dark:border-slate-800 dark:bg-slate-900; }
+  .panel:hover { @apply shadow-md; }
+  .button-primary { @apply inline-flex items-center justify-center gap-2 rounded-xl bg-indigo-600 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-50; }
+  .button-secondary { @apply inline-flex items-center justify-center gap-2 rounded-xl border bg-white px-4 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800; }
+  .field { @apply w-full rounded-xl border bg-white px-3.5 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100 dark:focus:ring-indigo-950; }
+}
+
+@page { size: A4; margin: 18mm; }
+
+@media print {
+  body.printing-document * { visibility: hidden !important; }
+  body.printing-document .export-preview,
+  body.printing-document .export-preview * { visibility: visible !important; }
+  body.printing-document .export-preview {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    min-height: auto !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    background: #fff !important;
+    color: #1e293b !important;
+  }
+  body.printing-document .export-preview h1,
+  body.printing-document .export-preview h2,
+  body.printing-document .export-preview h3 { break-after: avoid; }
+  body.printing-document .export-preview p,
+  body.printing-document .export-preview blockquote { break-inside: avoid; }
+}
+
+/* Dark-mode emphasis overrides: keep geometry and light-mode styles unchanged. */
+.dark .button-primary,
+.dark .button-primary:hover {
+  background-color: #22D3EE;
+  color: #0F1220;
+}
+
+.dark .field:focus {
+  border-color: #22D3EE;
+  --tw-ring-color: rgb(34 211 238 / 0.12);
+}
+
+.dark input[type="checkbox"],
+.dark input[type="radio"] {
+  accent-color: #22D3EE;
+}
+
+.dark [class*="dark:bg-indigo-"],
+.dark [class*="dark:bg-[#22D3EE]"] {
+  background-color: rgb(34 211 238 / 0.12);
+}
+
+.dark [class*="dark:border-indigo-"],
+.dark [class*="dark:border-[#22D3EE]"],
+.dark [class~="border-indigo-500"] {
+  border-color: #22D3EE;
+}
+
+.dark [class~="bg-indigo-600"],
+.dark [class~="bg-indigo-500"] {
+  background-color: #22D3EE;
+}
+
+.dark [class~="bg-indigo-600"] {
+  color: #0F1220;
+}
+
+.dark [class*="dark:text-indigo-"],
+.dark [class*="dark:text-[#22D3EE]"],
+.dark [class*="text-indigo-"] {
+  color: #22D3EE;
+}
+
+.dark [class*="dark:hover:bg-indigo-"]:hover,
+.dark [class*="dark:hover:bg-[#22D3EE]"]:hover {
+  background-color: rgb(34 211 238 / 0.12);
+}
+
+.dark [class*="dark:hover:text-indigo-"]:hover,
+.dark [class*="hover:text-indigo-"]:hover {
+  color: #22D3EE;
+}
+
+/* Material category tags: preserve their existing size while improving dark-mode contrast. */
+.dark [class~="bg-indigo-50"][class~="text-indigo-700"] {
+  background-color: #FFFFFF;
+  color: #0F1220;
+}
+
+.dark [class~="dark:bg-white"] p.truncate {
+  color: #1A1D29;
+}
+
+.dark [class~="dark:bg-white"] p.text-slate-400,
+.dark [class~="dark:bg-white"] button.text-slate-400 {
+  color: #4E5468;
+}
